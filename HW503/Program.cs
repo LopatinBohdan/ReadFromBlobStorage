@@ -13,6 +13,11 @@ if (await blobClient.ExistsAsync())
 {
 	var result = blobClient.DownloadContentAsync();
 	Console.WriteLine(result.Result.Value.Content.ToString());
+	string filePath = "data.txt";
+	using (StreamWriter sw=new StreamWriter(filePath, false))
+	{
+		await sw.WriteAsync(result.Result.Value.Content.ToString());
+	}
 }
 else
 {
